@@ -4,6 +4,7 @@
 */
 
 import QtQuick 2.7
+import org.kde.kirigami 2.20 as Kirigami
 import org.kde.plasma.plasmoid 2.0
 
 Item{
@@ -104,7 +105,7 @@ Item{
 
         readonly property alias screenEdgeMargin: _indicator.screenEdgeMargin
 
-        readonly property QtObject palette: _indicator.palette ? _indicator.palette : theme
+        readonly property QtObject palette: _indicator.palette ? _indicator.palette : _defaultPalette
 
         //!icon colors
         readonly property alias iconBackgroundColor: _indicator.iconBackgroundColor
@@ -114,5 +115,17 @@ Item{
         readonly property alias shared: _indicator.shared
         readonly property alias configuration: _indicator.configuration
         readonly property alias resources: _indicator.resources
+    }
+
+    //! Plasma 6: 'theme' global was removed. Provide a proxy for default palette.
+    readonly property QtObject _defaultPalette: QtObject {
+        readonly property color textColor: Kirigami.Theme.textColor
+        readonly property color backgroundColor: Kirigami.Theme.backgroundColor
+        readonly property color highlightColor: Kirigami.Theme.highlightColor
+        readonly property color highlightedTextColor: Kirigami.Theme.highlightedTextColor
+        readonly property color positiveTextColor: Kirigami.Theme.positiveTextColor
+        readonly property color neutralTextColor: Kirigami.Theme.neutralTextColor
+        readonly property color negativeTextColor: Kirigami.Theme.negativeTextColor
+        readonly property color buttonFocusColor: Kirigami.Theme.focusColor
     }
 }

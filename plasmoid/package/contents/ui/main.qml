@@ -14,10 +14,10 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 3.0 as PlasmaComponents
 import org.kde.plasma.plasmoid 2.0
 
-import org.kde.taskmanager 0.1 as TaskManager
-import org.kde.plasma.private.taskmanager 0.1 as TaskManagerApplet
+import org.kde.taskmanager as TaskManager
+import org.kde.plasma.private.taskmanager as TaskManagerApplet
 
-import org.kde.activities 0.1 as Activities
+import org.kde.activities as Activities
 
 import org.kde.latte.core 0.2 as LatteCore
 import org.kde.latte.components 1.0 as LatteComponents
@@ -234,15 +234,15 @@ PlasmoidItem {
 
     Connections {
         target: appletAbilities.myView
-        onIsHiddenChanged: {
+        function onIsHiddenChanged() {
             if (appletAbilities.myView.isHidden) {
                 windowsPreviewDlg.hide("3.3");
             }
         }
 
-        onIsReadyChanged: {
+        function onIsReadyChanged() {
             if (appletAbilities.myView.isReady) {
-                plasmoid.action("configure").visible = false;
+                plasmoid.internalAction("configure").visible = false;
                 plasmoid.configuration.isInLatteDock = true;
             }
         }

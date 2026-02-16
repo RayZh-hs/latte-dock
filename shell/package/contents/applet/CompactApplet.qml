@@ -9,6 +9,7 @@ import QtQuick.Window 2.0
 import Qt5Compat.GraphicalEffects
 
 import org.kde.ksvg 1.0 as KSvg
+import org.kde.kirigami 2.20 as Kirigami
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 3.0 as PlasmaComponents
 import org.kde.kquickcontrolsaddons 2.0
@@ -20,11 +21,11 @@ PlasmaCore.ToolTipArea {
     objectName: "org.kde.desktop-CompactApplet"
     anchors.fill: parent
 
-    mainText: plasmoid.toolTipMainText
-    subText: plasmoid.toolTipSubText
+    mainText: plasmoid.toolTipMainText || ""
+    subText: plasmoid.toolTipSubText || ""
     location: plasmoid.location
     active: !plasmoid.expanded
-    textFormat: plasmoid.toolTipTextFormat
+    textFormat: plasmoid.toolTipTextFormat || 0
     mainItem: plasmoid.toolTipItem ? plasmoid.toolTipItem : null
 
     property Item fullRepresentation: null
@@ -78,7 +79,7 @@ PlasmaCore.ToolTipArea {
             })
         } else {
             popupWindow.mainItem.width = Qt.binding(function() {
-                return PlasmaCore.Theme.mSize(PlasmaCore.Theme.defaultFont).width * 35
+                return Kirigami.Units.gridUnit * 35
             })
         }
 
@@ -96,7 +97,7 @@ PlasmaCore.ToolTipArea {
             })
         } else {
             popupWindow.mainItem.height = Qt.binding(function() {
-                return PlasmaCore.Theme.mSize(PlasmaCore.Theme.defaultFont).height * 25
+                return Kirigami.Units.gridUnit * 25
             })
         }
 
@@ -147,7 +148,7 @@ PlasmaCore.ToolTipArea {
     }
 
     Connections {
-        target: plasmoid.action("configure")
+        target: plasmoid.internalAction("configure")
         function onTriggered() { plasmoid.expanded = false }
     }
 

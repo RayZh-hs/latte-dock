@@ -455,6 +455,7 @@ Item{
 
         ScriptAction{
             script: {
+                if (!latteView || !latteView.visibility) return;
                 latteView.visibility.isHidden = true;
 
                 if (root.behaveAsPlasmaPanel && latteView.positioner.slideOffset !== 0) {
@@ -480,7 +481,9 @@ Item{
                 }
             }
 
-            latteView.visibility.slideOutFinished();
+            if (latteView && latteView.visibility) {
+                latteView.visibility.slideOutFinished();
+            }
             manager.updateInputGeometry();
 
             if (root.inStartup) {

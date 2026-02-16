@@ -5,6 +5,7 @@
 
 import QtQuick 2.1
 
+import org.kde.kirigami 2.20 as Kirigami
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.plasmoid 2.0
 
@@ -70,8 +71,8 @@ Item {
     Binding{
         target: latteView
         property: "fontPixelSize"
-        when: theme
-        value: theme.defaultFont.pixelSize
+        when: latteView
+        value: Qt.application.font.pixelSize
     }
 
     Binding{

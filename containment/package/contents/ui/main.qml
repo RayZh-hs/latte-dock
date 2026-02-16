@@ -443,7 +443,7 @@ ContainmentItem {
     //! It is used only when the user chooses different alignment types and not during startup
     Connections {
         target: latteView ? latteView : null
-        onAlignmentChanged: {
+        function onAlignmentChanged() {
             if (latteView.alignment === LatteCore.Types.NoneAlignment) {
                 return;
             }
@@ -486,14 +486,14 @@ ContainmentItem {
 
     Connections {
         target: latteView
-        onPositionerChanged: {
+        function onPositionerChanged() {
             if (latteView.positioner) {
                 latteView.positioner.hidingForRelocationStarted.connect(visibilityManager.slotHideDockDuringLocationChange);
                 latteView.positioner.showingAfterRelocationFinished.connect(visibilityManager.slotShowDockAfterLocationChange);
             }
         }
 
-        onVisibilityChanged: {
+        function onVisibilityChanged() {
             if (latteView.visibility) {
                 latteView.visibility.onContainsMouseChanged.connect(visibilityManager.slotContainsMouseChanged);
                 latteView.visibility.onMustBeHide.connect(visibilityManager.slotMustBeHide);
@@ -531,8 +531,8 @@ ContainmentItem {
         upgrader_v010_alignment();
 
         fastLayoutManager.restore();
-        plasmoid.action("configure").visible = !plasmoid.immutable;
-        plasmoid.action("configure").enabled = !plasmoid.immutable;
+        plasmoid.internalAction("configure").visible = !plasmoid.immutable;
+        plasmoid.internalAction("configure").enabled = !plasmoid.immutable;
     }
 
     Component.onDestruction: {
@@ -575,8 +575,8 @@ ContainmentItem {
     }
 
     Plasmoid.onImmutableChanged: {
-        plasmoid.action("configure").visible = !plasmoid.immutable;
-        plasmoid.action("configure").enabled = !plasmoid.immutable;
+        plasmoid.internalAction("configure").visible = !plasmoid.immutable;
+        plasmoid.internalAction("configure").enabled = !plasmoid.immutable;
     }
     //////////////END OF CONNECTIONS
 

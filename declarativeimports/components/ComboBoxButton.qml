@@ -7,6 +7,7 @@ import QtQuick.Controls 1.4
 import QtQuick 2.2
 import QtQuick.Layouts 1.3
 
+import org.kde.kirigami 2.20 as Kirigami
 import org.kde.plasma.components 3.0 as PlasmaComponents
 import org.kde.plasma.components 3.0 as PlasmaComponents3
 
@@ -144,7 +145,7 @@ Rectangle {
         height: parent.height
         text: buttonText
         font: mainButton.font
-        color: buttonIsTransparent ? theme.textColor : theme.buttonTextColor
+        color: buttonIsTransparent ? Kirigami.Theme.textColor : Kirigami.Theme.textColor
         visible: root.checkable || (mainButton.opacity === 0)
 
         elide: Text.ElideRight

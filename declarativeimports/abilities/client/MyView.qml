@@ -5,6 +5,7 @@
 
 import QtQuick 2.0
 
+import org.kde.kirigami 2.20 as Kirigami
 import org.kde.plasma.plasmoid 2.0
 import org.kde.latte.abilities.definition 0.1 as AbilityDefinition
 
@@ -46,7 +47,19 @@ AbilityDefinition.MyView {
 
     itemShadow: ref.myView.itemShadow
 
-    palette: bridge && bridge.applyPalette ? bridge.palette : theme
+    palette: bridge && bridge.applyPalette ? bridge.palette : _defaultPalette
+
+    //! Plasma 6: 'theme' global was removed. Provide a proxy for default palette.
+    readonly property QtObject _defaultPalette: QtObject {
+        readonly property color textColor: Kirigami.Theme.textColor
+        readonly property color backgroundColor: Kirigami.Theme.backgroundColor
+        readonly property color highlightColor: Kirigami.Theme.highlightColor
+        readonly property color highlightedTextColor: Kirigami.Theme.highlightedTextColor
+        readonly property color positiveTextColor: Kirigami.Theme.positiveTextColor
+        readonly property color neutralTextColor: Kirigami.Theme.neutralTextColor
+        readonly property color negativeTextColor: Kirigami.Theme.negativeTextColor
+        readonly property color buttonFocusColor: Kirigami.Theme.focusColor
+    }
 
     readonly property AbilityDefinition.MyView local: AbilityDefinition.MyView {
         isShownFully: true

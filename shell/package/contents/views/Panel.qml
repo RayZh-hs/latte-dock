@@ -63,14 +63,10 @@ KSvg.FrameSvgItem {
         console.log("latte view qml source deleting...");
     }
 
-    //! In Plasma 6, containment.locationChanged may not be available as a
-    //! connectable signal. Use a Connections element with a function instead.
-    Connections {
-        target: containment
-        function onLocationChanged() {
-            adjustPrefix();
-        }
-    }
+    //! Plasma 6: ContainmentItem doesn't directly expose locationChanged signal.
+    //! Track location via a local property binding instead.
+    readonly property int _containmentLocation: containment ? containment.location : -1
+    on_ContainmentLocationChanged: adjustPrefix()
 
     onContainmentChanged: {
         console.log("latte view qml source - containment changed 1...");

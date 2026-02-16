@@ -7,6 +7,7 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.1
 import QtQuick.Window 2.1
+import org.kde.kirigami 2.20 as Kirigami
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 3.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
@@ -21,7 +22,7 @@ PlasmaCore.FrameSvgItem {
     enabledBorders: infoWindow ? infoWindow.enabledBorders : PlasmaCore.FrameSvg.AllBorders
 
     width: Screen.width + 1
-    height: Math.min(Screen.height - units.gridUnit * 8, logo.height + messageLbl.height + 2 *units.gridUnit)
+    height: Math.min(Screen.height - Kirigami.Units.gridUnit * 8, logo.height + messageLbl.height + 2 *Kirigami.Units.gridUnit)
 
     property string message
 
@@ -39,7 +40,7 @@ PlasmaCore.FrameSvgItem {
                 id: logo
                 anchors.centerIn: parent
 
-                width: units.iconSizes.huge
+                width: Kirigami.Units.iconSizes.huge
                 height: width
 
                 source: "latte-dock"

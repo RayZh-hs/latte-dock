@@ -55,7 +55,7 @@ MouseArea {
     property int appletY
 
     readonly property int thickness: metrics.mask.thickness.maxNormal - metrics.extraThicknessForNormal
-    readonly property int spacerHandleSize: units.smallSpacing
+    readonly property int spacerHandleSize: Kirigami.Units.smallSpacing
 
     onHeightChanged: tooltip.visible = false;
     onWidthChanged: tooltip.visible = false;
@@ -299,7 +299,7 @@ MouseArea {
 
             Rectangle{
                 anchors.fill: parent
-                color: theme.backgroundColor
+                color: Kirigami.Theme.backgroundColor
                 radius: 3
                 opacity: 0.35
             }
@@ -408,9 +408,9 @@ MouseArea {
 
                 configureButton.visible = !currentApplet.isInternalViewSplitter
                         && (currentApplet.applet.pluginName !== "org.kde.latte.plasmoid")
-                        && currentApplet.applet.action("configure")
-                        && currentApplet.applet.action("configure").enabled;
-                closeButton.visible = !currentApplet.isInternalViewSplitter && currentApplet.applet.action("remove") && currentApplet.applet.action("remove").enabled;
+                        && currentApplet.applet.internalAction("configure")
+                        && currentApplet.applet.internalAction("configure").enabled;
+                closeButton.visible = !currentApplet.isInternalViewSplitter && currentApplet.applet.internalAction("remove") && currentApplet.applet.internalAction("remove").enabled;
                 lockButton.visible = !currentApplet.isInternalViewSplitter
                         && !currentApplet.communicator.indexerIsSupported
                         && !currentApplet.communicator.appletBlocksParabolicEffect
@@ -437,10 +437,10 @@ MouseArea {
             Row {
                 id: handleRow
                 anchors.horizontalCenter: parent.horizontalCenter
-                spacing: 2*units.smallSpacing
+                spacing: 2*Kirigami.Units.smallSpacing
 
                 Row{
-                    spacing: units.smallSpacing
+                    spacing: Kirigami.Units.smallSpacing
                     PlasmaComponents.ToolButton {
                         id: configureButton
                         anchors.verticalCenter: parent.verticalCenter
@@ -449,20 +449,20 @@ MouseArea {
                         // tooltip: i18n("Configure applet")
                         onClicked: {
                             // tooltip.visible = false;
-                            currentApplet.applet.action("configure").trigger();
+                            currentApplet.applet.internalAction("configure").trigger();
                         }
                     }
 
                     PlasmaComponents.Label {
                         id: label
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: units.smallSpacing
+                        anchors.rightMargin: Kirigami.Units.smallSpacing
                         textFormat: Text.PlainText
                         maximumLineCount: 1
                     }
 
                     Row{
-                        spacing: units.smallSpacing/2
+                        spacing: Kirigami.Units.smallSpacing/2
 
                         PlasmaComponents.ToolButton{
                             id: colorizingButton
@@ -494,7 +494,7 @@ MouseArea {
                             onClicked: {
                                 // tooltip.visible = false;
                                 if(currentApplet && currentApplet.applet)
-                                    currentApplet.applet.action("remove").trigger();
+                                    currentApplet.applet.internalAction("remove").trigger();
                             }
                         }
                     }

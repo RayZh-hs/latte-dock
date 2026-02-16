@@ -10,8 +10,8 @@ import org.kde.plasma.plasmoid 2.0
 
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 3.0 as PlasmaComponents
-import org.kde.activities 0.1 as Activities
-import org.kde.taskmanager 0.1 as TaskManager
+import org.kde.activities as Activities
+import org.kde.taskmanager as TaskManager
 
 import org.kde.latte.core 0.2 as LatteCore
 import org.kde.latte.private.tasks 0.1 as LatteTasks
@@ -833,10 +833,10 @@ PlasmaComponents.ContextMenu {
         id: alternativesMenuItem
         visible: (appletAbilities.myView.isReady && appletAbilities.myView.inEditMode)
                  || (!appletAbilities.myView.isReady && plasmoid.userConfiguring /*normal plasmoid in the desktop*/)
-        text: plasmoid.action("alternatives").text
-        icon: plasmoid.action("alternatives").icon
+        text: plasmoid.internalAction("alternatives").text
+        icon: plasmoid.internalAction("alternatives").icon
 
-        onClicked: plasmoid.action("alternatives").trigger();
+        onClicked: plasmoid.internalAction("alternatives").trigger();
     }
 
     PlasmaComponents.MenuItem {
@@ -855,11 +855,11 @@ PlasmaComponents.ContextMenu {
         //! Workaround: this is preferred compared to:
         //!   action:plasmoid.action("remove")
         //! which shows the action always and not dependent of myView.inEditMode flag
-        text: plasmoid.action("remove").text
-        icon: plasmoid.action("remove").icon
+        text: plasmoid.internalAction("remove").text
+        icon: plasmoid.internalAction("remove").icon
         visible: appletAbilities.myView.isReady && appletAbilities.myView.inEditMode
 
-        onClicked: plasmoid.action("remove").trigger();
+        onClicked: plasmoid.internalAction("remove").trigger();
     }
 
     PlasmaComponents.MenuItem {
