@@ -5,6 +5,7 @@
 
 #include "interfaces.h"
 
+#include <Plasma/Applet>
 #include <PlasmaQuick/AppletQuickItem>
 
 namespace Latte{
@@ -139,6 +140,14 @@ QObject *Interfaces::plasmoidInterface() const
 void Interfaces::setPlasmoidInterface(QObject *interface)
 {
     PlasmaQuick::AppletQuickItem *plasmoid = qobject_cast<PlasmaQuick::AppletQuickItem *>(interface);
+
+    //! In Plasma 6, the QML 'plasmoid' property is a Plasma::Applet*, not an AppletQuickItem*.
+    //! Use itemForApplet() to get the corresponding AppletQuickItem.
+    if (!plasmoid) {
+        if (auto *applet = qobject_cast<Plasma::Applet *>(interface)) {
+            plasmoid = PlasmaQuick::AppletQuickItem::itemForApplet(applet);
+        }
+    }
 
     if (plasmoid && m_plasmoid != plasmoid) {
         m_plasmoid = plasmoid;

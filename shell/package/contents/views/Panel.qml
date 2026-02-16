@@ -61,9 +61,14 @@ KSvg.FrameSvgItem {
 
     Component.onDestruction: {
         console.log("latte view qml source deleting...");
+    }
 
-        if (containment) {
-            containment.locationChanged.disconnect(adjustPrefix);
+    //! In Plasma 6, containment.locationChanged may not be available as a
+    //! connectable signal. Use a Connections element with a function instead.
+    Connections {
+        target: containment
+        function onLocationChanged() {
+            adjustPrefix();
         }
     }
 
@@ -77,7 +82,6 @@ KSvg.FrameSvgItem {
         containment.parent = containmentParent;
         containment.visible = true;
         containment.anchors.fill = containmentParent;
-        containment.locationChanged.connect(adjustPrefix);
         adjustPrefix();
 
         for(var i=0; i<containment.children.length; ++i){
