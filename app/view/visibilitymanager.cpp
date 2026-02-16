@@ -68,7 +68,9 @@ VisibilityManager::VisibilityManager(PlasmaQuick::ContainmentView *view)
     connect(this, &VisibilityManager::isFloatingGapWindowEnabledChanged, this, &VisibilityManager::onIsFloatingGapWindowEnabledChanged);
 
     connect(this, &VisibilityManager::mustBeShown, this, [&]() {
+        qDebug() << "Latte::VisibilityManager::mustBeShown lambda triggered";
         if (m_latteView && !m_latteView->isVisible()) {
+            qDebug() << "Latte::VisibilityManager setting view visible";
             m_latteView->setVisible(true);
         }
     });

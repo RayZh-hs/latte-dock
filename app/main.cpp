@@ -437,11 +437,12 @@ int main(int argc, char **argv)
     }
 
     //! debug/mask options
-    if (parser.isSet(QStringLiteral("debug")) || parser.isSet(QStringLiteral("mask")) || parser.isSet(QStringLiteral("debug-text"))) {
+    if (false && (parser.isSet(QStringLiteral("debug")) || parser.isSet(QStringLiteral("mask")) || parser.isSet(QStringLiteral("debug-text")))) {
         qInstallMessageHandler(filterDebugMessageOutput);
     } else {
-        const auto noMessageOutput = [](QtMsgType, const QMessageLogContext &, const QString &) {};
-        qInstallMessageHandler(noMessageOutput);
+        // const auto noMessageOutput = [](QtMsgType, const QMessageLogContext &, const QString &) {};
+        // qInstallMessageHandler(noMessageOutput);
+        qInstallMessageHandler(filterDebugMessageOutput);
     }
 
     auto signal_handler = [](int) {

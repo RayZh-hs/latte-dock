@@ -220,6 +220,7 @@ void Corona::onAboutToQuit()
 
 void Corona::load()
 {
+    qDebug() << "Latte::Corona::load()" << "Activities service status:" << (m_activitiesConsumer ? m_activitiesConsumer->serviceStatus() : -1) << "Activities starting:" << m_activitiesStarting;
     if (m_activitiesConsumer && (m_activitiesConsumer->serviceStatus() == KActivities::Consumer::Running) && m_activitiesStarting) {
         m_activitiesStarting = false;
 
@@ -310,14 +311,18 @@ void Corona::unload()
 void Corona::setupWaylandIntegration()
 {
     if (!KWindowSystem::isPlatformWayland()) {
+        qDebug() << "Latte::Corona::setupWaylandIntegration: Not Wayland platform";
         return;
     }
+
+    qDebug() << "Latte::Corona::setupWaylandIntegration: Wayland platform detected";
 
     using namespace KWayland::Client;
 
     auto connection = ConnectionThread::fromApplication(this);
 
     if (!connection) {
+        qDebug() << "Latte::Corona::setupWaylandIntegration: ConnectionThread::fromApplication failed";
         return;
     }
 
@@ -861,6 +866,7 @@ QRect Corona::availableScreenRectWithCriteria(int id,
 
 void Corona::onScreenAdded(QScreen *screen)
 {
+    qDebug() << "Latte::Corona::onScreenAdded" << (screen ? screen->name() : "NULL");
     Q_ASSERT(screen);
 
     int id = m_screenPool->id(screen->name());
@@ -926,6 +932,7 @@ void Corona::onAvailableScreenRectChangedFrom(Latte::View *view)
 //! concerning screen changed (for multi-screen setups mainly)
 void Corona::syncLatteViewsToScreens()
 {
+    qDebug() << "Latte::Corona::syncLatteViewsToScreens()";
     m_layoutsManager->synchronizer()->syncLatteViewsToScreens();
 }
 
@@ -1265,6 +1272,7 @@ QStringList Corona::viewTemplatesData()
 
 void Corona::addView(const uint &containmentId, const QString &templateId)
 {
+    qDebug() << "Latte::Corona::addView" << containmentId << templateId;
     if (containmentId <= 0) {
         auto currentlayouts = m_layoutsManager->currentLayouts();
         if (currentlayouts.count() > 0) {

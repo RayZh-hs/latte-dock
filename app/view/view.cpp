@@ -112,6 +112,7 @@ View::View(Plasma::Corona *corona, QScreen *targetScreen, bool byPassX11WM)
     }
 
     if (targetScreen) {
+        qDebug() << "Latte::View setScreenToFollow:" << targetScreen->name();
         m_positioner->setScreenToFollow(targetScreen);
     } else {
         qDebug() << "org.kde.view :::: corona was found properly!!!";
