@@ -20,6 +20,8 @@ class WindowId : public QVariant
 public:
     using QVariant::QVariant;
 
+    WindowId(const WindowId &other) = default;
+
     inline WindowId& operator=(const WindowId &other)
     {
         QVariant::operator=(other);

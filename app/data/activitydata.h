@@ -25,6 +25,14 @@ namespace Data {
 class Activity : public Generic
 {
 public:
+    enum State {
+        Invalid = 0,
+        Starting = 1,
+        Running = 2,
+        Stopping = 3,
+        Stopped = 4
+    };
+
     Activity();
     Activity(Activity &&o);
     Activity(const Activity &o);
@@ -32,7 +40,7 @@ public:
     //! Layout data
     bool isCurrent{false};
     QString icon;
-    KActivities::Info::State state;
+    State state{Stopped};
 
     bool isValid() const;
     bool isRunning() const;
