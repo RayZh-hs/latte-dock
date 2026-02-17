@@ -15,6 +15,11 @@
     - indicators default `config.qml` (`theme.*`/`units.*` → `Kirigami.Theme.*`/`Kirigami.Units.*`)
     - `TypeSelection.qml` (`theme.defaultFont.*`/`units.*` migrated)
     - `AppletDelegate.qml` (`theme.*`/`units.*` migrated)
+- Additional Plasma 6 migration pass completed (2026-02-17):
+    - `LatteDockConfiguration.qml` (core `theme.*`/`units.*` usage migrated to `Kirigami.Theme.*`/`Kirigami.Units.*`)
+    - `ProgressOverlay.qml` (`theme.*` migrated to `Kirigami.Theme.*`)
+    - `ComboBox.qml` (key `units.*` and active `theme.*` references migrated)
+    - `LatteDockSecondaryConfiguration.qml`, `DragCorner.qml`, `main.qml`, `SubHeader.qml`, `Header.qml` (remaining low-risk refs migrated)
 - Build succeeds
 
 ## Remaining: bare `theme.` refs → Kirigami.Theme (~85 hits)
@@ -32,7 +37,7 @@
     LatteDockConfiguration(25), Slider(7), ComboBox(6)
 
 ## Current snapshot
-- Remaining bare refs total (`theme.` + `units.`): **272**
+- Remaining bare refs total (`theme.` + `units.`): **210**
 
 ## Other potential issues (untested)
 - Verify `PlasmaCore.Types.*` enums still resolve (may need PlasmaCore→KSvg)
