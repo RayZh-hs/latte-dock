@@ -11,6 +11,7 @@ import QtQuick.Layouts 1.3
 
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 3.0 as PlasmaComponents
+import org.kde.kirigami 2.0 as Kirigami
 
 import org.kde.plasma.plasmoid 2.0
 
@@ -20,17 +21,17 @@ import org.kde.latte.private.containment 0.1 as LatteContainment
 Grid {
     id: typeRow
 
-    width: horizontal ? content.width - 4*units.smallSpacing : 9 * theme.defaultFont.pixelSize
-    anchors.leftMargin: horizontal ? units.smallSpacing : 0
-    anchors.rightMargin: horizontal ? units.smallSpacing : 0
+    width: horizontal ? content.width - 4*Kirigami.Units.smallSpacing : 9 * Qt.application.font.pixelSize
+    anchors.leftMargin: horizontal ? Kirigami.Units.smallSpacing : 0
+    anchors.rightMargin: horizontal ? Kirigami.Units.smallSpacing : 0
 
     Layout.minimumWidth: width
     Layout.maximumWidth: width
     Layout.minimumHeight: height
     Layout.maximumHeight: height
 
-    Layout.leftMargin: units.smallSpacing * 2
-    Layout.rightMargin: units.smallSpacing * 2
+    Layout.leftMargin: Kirigami.Units.smallSpacing * 2
+    Layout.rightMargin: Kirigami.Units.smallSpacing * 2
 
     rows: horizontal ? 1 : 0
     columns: horizontal ? 0 : 1

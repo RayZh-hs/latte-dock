@@ -22,7 +22,7 @@ Item{
     property int thicknessMargin: 0
 
     readonly property bool containsMouse: rulerMouseArea.containsMouse
-    readonly property int thickness: theme.defaultFont.pixelSize
+    readonly property int thickness: Qt.application.font.pixelSize
 
     readonly property string tooltip: i18nc("maximum length tooltip, %1 is maximum length percentage","You can use mouse wheel to change maximum length of %1%",plasmoid.configuration.maxLength)
 
@@ -194,23 +194,23 @@ Item{
 
         Rectangle{
             id: startLine
-            width: root.isHorizontal ? 2 : theme.defaultFont.pixelSize
-            height: root.isVertical ? 2 : theme.defaultFont.pixelSize
+            width: root.isHorizontal ? 2 : Qt.application.font.pixelSize
+            height: root.isVertical ? 2 : Qt.application.font.pixelSize
 
             color: settingsRoot.textColor
         }
 
         Item{
             id: startArrow
-            width: root.isHorizontal ? 0.6 * theme.defaultFont.pixelSize : theme.defaultFont.pixelSize
-            height: root.isVertical ? 0.6 * theme.defaultFont.pixelSize : theme.defaultFont.pixelSize
+            width: root.isHorizontal ? 0.6 * Qt.application.font.pixelSize : Qt.application.font.pixelSize
+            height: root.isVertical ? 0.6 * Qt.application.font.pixelSize : Qt.application.font.pixelSize
 
             clip:true
 
             Rectangle{
                 anchors.verticalCenter: root.isHorizontal ? parent.verticalCenter : parent.bottom
                 anchors.horizontalCenter: root.isHorizontal ? parent.right : parent.horizontalCenter
-                width: 0.75*theme.defaultFont.pixelSize
+                width: 0.75*Qt.application.font.pixelSize
                 height: width
                 rotation: 45
 
@@ -220,8 +220,8 @@ Item{
 
         Item{
             id: startSpacer
-            width: root.isHorizontal ? rulerGrid.freeSpace / 2 : theme.defaultFont.pixelSize
-            height: root.isVertical ? rulerGrid.freeSpace / 2 : theme.defaultFont.pixelSize
+            width: root.isHorizontal ? rulerGrid.freeSpace / 2 : Qt.application.font.pixelSize
+            height: root.isVertical ? rulerGrid.freeSpace / 2 : Qt.application.font.pixelSize
 
             Rectangle{
                 height: root.isHorizontal ? 2 : parent.height
@@ -283,14 +283,14 @@ Item{
 
         Item{
             id: endArrow
-            width: root.isHorizontal ? 0.6 * theme.defaultFont.pixelSize : theme.defaultFont.pixelSize
-            height: root.isVertical ? 0.6 * theme.defaultFont.pixelSize : theme.defaultFont.pixelSize
+            width: root.isHorizontal ? 0.6 * Qt.application.font.pixelSize : Qt.application.font.pixelSize
+            height: root.isVertical ? 0.6 * Qt.application.font.pixelSize : Qt.application.font.pixelSize
             clip:true
 
             Rectangle{
                 anchors.verticalCenter: root.isHorizontal ? parent.verticalCenter : parent.top
                 anchors.horizontalCenter: root.isHorizontal ? parent.left : parent.horizontalCenter
-                width: 0.75*theme.defaultFont.pixelSize
+                width: 0.75*Qt.application.font.pixelSize
                 height: width
                 rotation: 45
 
@@ -300,8 +300,8 @@ Item{
 
         Rectangle{
             id: endLine
-            width: root.isHorizontal ? 2 : theme.defaultFont.pixelSize
-            height: root.isVertical ? 2 : theme.defaultFont.pixelSize
+            width: root.isHorizontal ? 2 : Qt.application.font.pixelSize
+            height: root.isVertical ? 2 : Qt.application.font.pixelSize
 
             color: settingsRoot.textColor
         }

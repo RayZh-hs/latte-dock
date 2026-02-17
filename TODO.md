@@ -8,21 +8,31 @@
 - VisibilityManager null guards
 - CompactApplet.qml (mSize, tooltip nulls)
 - `theme`/`units` fixes in startup-critical path (~28 files)
+- Additional Plasma 6 migration pass completed:
+    - `TaskIcon.qml` (`theme.*` → `Kirigami.Theme.*`)
+    - `Ruler.qml` (`theme.defaultFont.*` → `Qt.application.font.*`)
+    - `EffectsConfig.qml` (`theme.*`/`units.*` → `Kirigami.Theme.*`/`Kirigami.Units.*`)
+    - indicators default `config.qml` (`theme.*`/`units.*` → `Kirigami.Theme.*`/`Kirigami.Units.*`)
+    - `TypeSelection.qml` (`theme.defaultFont.*`/`units.*` migrated)
+    - `AppletDelegate.qml` (`theme.*`/`units.*` migrated)
 - Build succeeds
 
-## Remaining: bare `theme.` refs → Kirigami.Theme (~117 hits, 32 files)
+## Remaining: bare `theme.` refs → Kirigami.Theme (~85 hits)
 - `theme.textColor/backgroundColor/highlightColor/etc` → `Kirigami.Theme.*`
 - `theme.buttonFocusColor` → `Kirigami.Theme.focusColor`
 - `theme.mSize(theme.defaultFont).width/height` → `Kirigami.Units.gridUnit`
 - `theme.defaultFont.pixelSize/pointSize` → `Qt.application.font.*`
 - `theme.smallestFont` → `Kirigami.Theme.smallFont`
-- Heaviest files: AppearanceConfig.qml(26), Ruler.qml(13),
-  indicators config.qml(10), EffectsConfig.qml(7), TaskIcon.qml(4)
+- Heaviest files now: AppearanceConfig.qml(26), LatteDockConfiguration.qml(7),
+    ProgressOverlay.qml(6), ComboBox.qml(5), indicators plasma config.qml(4)
 
-## Remaining: bare `units.` refs → Kirigami.Units (~221 hits, 29 files)
+## Remaining: bare `units.` refs → Kirigami.Units (~187 hits)
 - `units.smallSpacing/gridUnit/largeSpacing/iconSizes.*` → `Kirigami.Units.*`
-- Heaviest: TasksConfig(39), BehaviorConfig(36), AppearanceConfig(34),
-  LatteDockConfiguration(24), EffectsConfig(19), AppletDelegate(7)
+- Heaviest: TasksConfig(39), BehaviorConfig(37), AppearanceConfig(34),
+    LatteDockConfiguration(25), Slider(7), ComboBox(6)
+
+## Current snapshot
+- Remaining bare refs total (`theme.` + `units.`): **272**
 
 ## Other potential issues (untested)
 - Verify `PlasmaCore.Types.*` enums still resolve (may need PlasmaCore→KSvg)
